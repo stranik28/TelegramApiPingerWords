@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Копируем зависимости и файлы проекта в рабочую директорию контейнера
-COPY requirements.txt ./
+COPY req.txt ./
 COPY bot.py ./
 COPY .env ./
 
