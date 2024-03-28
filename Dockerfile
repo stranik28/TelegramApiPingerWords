@@ -10,7 +10,7 @@ COPY bot.py ./
 COPY .env ./
 
 # Устанавливаем зависимости проекта
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r req.txt
 
 # Команда для запуска бота
 CMD [ "python", "bot.py" ]
