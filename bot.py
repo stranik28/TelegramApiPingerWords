@@ -83,7 +83,6 @@ async def echo(message: types.Message):
 
 
 async def main():
-    # Запуск бота
     await dp.start_polling(bot)
 
 
