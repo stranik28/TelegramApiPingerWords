@@ -50,7 +50,7 @@ async def get_branch(phrase: str, token: str) -> str:
         "Authorization": "Bearer " + token
     }
 
-    async with aiohttp.ClientSession() as session:
+    async with (aiohttp.ClientSession() as session):
         async with session.get(url, headers=headers) as response:
             data = await response.json()
 
@@ -61,9 +61,10 @@ async def get_branch(phrase: str, token: str) -> str:
                 if branch_data_partial["hits"] == 0:
                     continue
                 else:
-                    if branch_data_partial["weights_divided"] > max_weights_divided:
+                    if branch_data_partial["weights_divided"] > 0.1 \
+                            and branch_data_partial['hits'] > max_weights_divided:
                         max_weights_divided_branch = {branch: branch_data_partial}
-                        max_weights_divided = branch_data_partial["weights_divided"]
+                        max_weights_divided = branch_data_partial["hits"]
 
             if max_weights_divided_branch:
                 return json.dumps(max_weights_divided_branch, indent=4, ensure_ascii=False)
